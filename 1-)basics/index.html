@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scss Basics</title>
+    <!-- * Css Link -->
+    <link rel="stylesheet" href="./styles/style.css" />
+  </head>
+  <body>
+    <!-- * Scss Nedir?
+     
+    Scss css'in sahip olduğu özelliklerin haricinde özelliklere sahip bir css ön işlemcisidir.Scss variables,nesting yazım,ınheritance,mixin,moduler dosya yönetimi gibi artıları nedeniyle daha kolay ve hızlı şekilde stillendirme yapmamızı sağlar.
+
+
+    ! Scss bu artılarına rağmen tarayıcıların tanımlayabildiği bir yapıda değildir.Yani tarayıcılara (chrome,brave,safari,edge,...) scss kodu verirseniz tarayıcı bu kodu anlamaz.Bu sebeple "glenn2223.live-sass" id'Li bir vscode eklentisi kullanılır.Kullanılan bu eklenti scss dosyasındaki kodları derleyerek css dosyasına çevirir bizde oluşturulan bu css dosyasını html dosyasına bağlarız.Bu sayede scss kodlaması yapar ve tarayıcıya bunu dolaylı şekilde olsada aktarabiliriz.
+    
+    -->
+
+    <!-- * Scss Variables Örneği -->
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+
+    <!-- * Scss Nesting Yazım Örneği -->
+    <header>
+      <!-- Logo -->
+      <div class="logo">
+        <img src="./assets/udemig.jpeg" alt="logo" />
+      </div>
+      <!-- Nav -->
+      <nav>
+        <a href="#">Ana Sayfa</a>
+        <a href="#">Hakkımızda</a>
+        <a href="#">İletişim</a>
+        <a href="#">Ana Sayfa</a>
+        <a href="#">Eğitimler</a>
+      </nav>
+
+      <!-- Buttons -->
+      <div class="buttons">
+        <button>Giriş Yap</button>
+        <button>Kayıt Ol</button>
+      </div>
+    </header>
+
+    <!-- * Scss Inheritance (Kalıtım) Örneği -->
+
+    <div class="wrapper">
+      <button>Buton-1</button>
+      <button>Buton-1</button>
+      <button>Buton-1</button>
+      <button>Buton-1</button>
+      <button>Buton-1</button>
+    </div>
+
+    <div class="wrapper-1">
+      <p>Scss dersinden selamlar.</p>
+      <p>Scss dersinden selamlar.</p>
+      <p>Scss dersinden selamlar.</p>
+      <p>Scss dersinden selamlar.</p>
+      <p>Scss dersinden selamlar.</p>
+    </div>
+
+    <!-- * Scss Mixin Örneği -->
+
+    <div class="btn-wrapper">
+      <button class="login-btn">Giriş Yap</button>
+      <a href="#" class="logout-btn">Çıkış Yap</a>
+    </div>
+
+    <!-- * Scss Modüler Dosya Yönetimi Örneği -->
+
+    <main>
+      <!-- Header  -->
+      <header class="header">
+        <h1>Header</h1>
+      </header>
+      <!-- Main -->
+      <section>
+        <aside class="left-aside">
+          <h1>Left</h1>
+        </aside>
+        <div class="center"><h1>Center</h1></div>
+        <aside class="right-aside"><h1>Right</h1></aside>
+      </section>
+
+      <!-- Footer -->
+      <footer>
+        <h1>Footer</h1>
+      </footer>
+    </main>
+  </body>
+</html>

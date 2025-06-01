@@ -1,0 +1,29 @@
+// ! Mixin Yapısı
+
+@mixin xxl {
+  @media (max-width: 1400px) {
+    @content;
+  }
+}
+@mixin xl {
+  @media (max-width: 1200px) {
+    @content;
+  }
+}
+
+@mixin lg {
+  @media (max-width: 900px) {
+    @content;
+  }
+}
+@mixin md {
+  @media (max-width: 768px) {
+    @content;
+  }
+}
+@mixin sm {
+  // Media etiketini bir mixin yapısı içerisine ekledik.@content sayesinde mixin yapısı çağırıldığında içerisinde yazılan kodlar bu media etiketinin içerisine denk gelir.
+  @media (max-width: 600px) {
+    @content;
+  }
+}

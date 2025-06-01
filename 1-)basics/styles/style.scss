@@ -1,0 +1,279 @@
+// * Scss Imports
+@import "./reset";
+@import "./mixin";
+@import "./main";
+@import "./center";
+@import "./footer";
+@import "./header";
+@import "./left";
+@import "./right";
+@import "./section";
+
+// * Scss Modüler Dosya Yönetimi
+
+// Çok sayfalı projelerde birden fazla html dosyası olacağından bu dosyalardaki elemanların stillendirilmesinin tek bir dosyada yapılması kod yönetimini zorlaştırır.Bu sorunu scss modüler dosya yönetimi ile çözebiliriz.Bunu yaparken bir ana scss dosyası oluşturur bunun dışındaki diğer dosyalar ise  yardımcı scss dosyalarıdır.Yardımcı scss dosyaları oluşturulurken başına "_" konulur.Sonrasında ise ana scss dosyasında yardımcı scss dosyaları "@import 'dosyaYolu'; " şeklinde import edilir.
+
+// * Scss Variables (Değişkenler):
+
+// Scss değişkenleri proje içerisinde stillendirme yaparken ilgili still özelliklerinde bir değişiklik yapılması ve proje içerisinde hex veya rgb kodu gibi yapıları kolay bir şekilde yönetmemizi sağlar.
+
+// Bir scss değişkeni tanımlarken $ işareti konulur sonrasında değişkene bir isim verilir.Verilecek isim eğer birden fazla kelimeden oluşuyorsa kelimeleri ya "-" ile ayırır yada camelCase e göre yazarız.Değişken adındna sonra ise ":" koyulup :'nın sağında değişkenin değeri yazılır.
+
+// Scss variables'lar sayesinde proje içerisindeki yapıların yönetimi ve herhangi bir değişiklik yapılması süreci çok daha kolay ve hızlı şekilde yapılabilir.
+
+$box-width: 50px;
+$box-height: 50px;
+$box-background: green;
+$box-margin: 10px;
+$box-radius: 10px;
+$box-shadow: 10px 10px 10px black;
+
+// *  Scss Variables Örneği
+.box {
+  width: $box-width;
+  height: $box-height;
+  background-color: $box-background;
+  margin: $box-margin;
+  border-radius: $box-radius;
+  box-shadow: $box-shadow;
+}
+
+// * Scss Nesting Yazım Örneği
+
+// Html'de bir elemana verilecek still özelliklerinin geçerli olması ve diğer elemanlardan ayrışması için doğru seçici ile elemanlara erişmemiz gerekir.[Ör: header .logo img; header nav a span,...] Bu durum fazlaca parent elemanın adının yazılması anlamına gelir.Bu durumu scss nesting yazım ile daha kolay hale getirebiliriz. Fakat nesting yazım yaparken elemanın kapsamını doğru tespit etmemiz gerekir.Aksi halde verilen still özellikleri çalışmaz.
+
+// ! Klasik css ile
+
+/*
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  border: 1px solid gray;
+  margin: 50px 0;
+}
+
+
+header .logo {
+  width: 100px;
+  height: 100px;
+  box-shadow: 5px 0 10px;
+  border-radius: 20px;
+  overflow: hidden;
+}
+  
+header .logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+header nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+
+header nav a {
+  text-decoration: none;
+  color: black;
+  font-size: 17px;
+  font-weight: bold;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  transition: all 0.3s ease;
+}
+  
+header nav a:hover {
+  color: purple;
+  font-size: 20px;
+}
+
+header .buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+ 
+header .buttons button {
+  border: none;
+  outline: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 400;
+  background: transparent;
+  color: white;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+  
+header .buttons button:hover {
+  scale: 0.8;
+}
+ 
+header .buttons button:first-child {
+  background-color: green;
+}
+header .buttons button:last-child {
+  background-color: red;
+}
+
+  */
+
+// ! Nesting yazım ile
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  border: 1px solid gray;
+  margin: 50px 0;
+  // Logo
+  .logo {
+    width: 100px;
+    height: 100px;
+    box-shadow: 5px 0 10px;
+    border-radius: 20px;
+    overflow: hidden;
+    @include xl {
+      width: 80px;
+      height: 80px;
+    }
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  // Nav
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    @include md {
+      display: none;
+    }
+    a {
+      text-decoration: none;
+      color: black;
+      font-size: 17px;
+      font-weight: bold;
+      font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+        "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+      transition: all 0.3s ease;
+      @include xl {
+        font-size: 15px;
+      }
+      &:hover {
+        color: purple;
+        font-size: 20px;
+      }
+    }
+  }
+
+  // Buttons
+  .buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    @include xl {
+      display: none;
+    }
+    button {
+      border: none;
+      outline: none;
+      padding: 8px 12px;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: 400;
+      background: transparent;
+      color: white;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      &:hover {
+        scale: 0.8;
+      }
+
+      &:first-child {
+        background-color: green;
+      }
+      &:last-child {
+        background-color: red;
+      }
+    }
+  }
+}
+
+// Scss Inheritance (Kalıtım) Örneği
+
+// Projelerde çokca tekrar eden [flexbox,grid,...] kodları daha az tekrarla elde etmek için extend kullanılır.Extend işlemi yapmak için ilk olarak miras alınacak yapı oluşturulur.Oluşturulan bu yapı içerisinde gerekli stillendirme yapılır.Gereken yerlerde bu yapı @extend ile miras alınır.
+
+#flexBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.wrapper {
+  background-color: aqua;
+  padding: 20px;
+  margin: 30px;
+  @extend #flexBox;
+}
+
+.wrapper-1 {
+  background-color: blueviolet;
+  padding: 15px;
+  margin: 10px;
+  @extend #flexBox;
+  color: white;
+  font-size: 18px;
+  white-space: nowrap;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+// * Scss Mixin Örneği
+
+// Scss mixin yapısı hem ortak yapılar oluşturarak kod tekrarını azaltmak hemde responsive tasarım yapmak için kullanılır.Bir mixin yapısı oluşturmak için @mixin yazıldıktan sonra mixin yapısına bir isim verilir.Verilen bu isimden sonra {} yapısı oluşturularak gerekli kodlama yapılır.
+
+$red-color: red;
+$green-color: green;
+
+// Mixin yapısının oluşturulması
+@mixin authBtn($bg-color) {
+  border: none;
+  outline: none;
+  text-decoration: none;
+  padding: 8px 15px;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: bold;
+  color: white;
+  background: $bg-color;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  &:hover {
+    scale: 0.8;
+  }
+}
+
+.btn-wrapper {
+  padding: 20px;
+  @extend #flexBox;
+
+  .login-btn {
+    // Mixin yapısının kullanılması
+    @include authBtn($green-color);
+  }
+
+  .logout-btn {
+    // Mixin yapısının kullanılması
+    @include authBtn($red-color);
+  }
+}
